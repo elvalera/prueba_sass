@@ -1,0 +1,39 @@
+<div>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">Prueba Elvis Valera SAS</a>
+    <div class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a routerLink="ciudades" class="nav-link">Ciudades</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="sedes" class="nav-link">Sedes</a>
+      </li>
+
+
+
+      <li class="nav-item">
+        <a routerLink="tutorials" class="nav-link">titorial</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="add" class="nav-link">Usuarios</a>
+      </li>
+    </div>
+
+    <div class="navbar-nav ml-auto">
+      <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="login">Iniciar session</a>
+        </li>
+      </ng-container>
+      <ng-template #loggedIn>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="#" (click)="authService.logout()">Cerrar Session</a>
+        </li>
+      </ng-template>
+    </div>
+  </nav>
+
+  <div class="container mt-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>

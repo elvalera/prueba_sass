@@ -1,0 +1,30 @@
+<div style="width: 400px; margin: auto">
+  <div *ngIf="formulario" class="edit-form">
+    <h4>Actualizar Ciudad</h4>
+    <form [formGroup]="formulario" (ngSubmit)="submit()">
+      <div class="form-group">
+        <label for="title">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          formControlName="nombre"
+          name="title"
+        />
+      </div>
+      
+      <button
+        type="submit"
+        class="badge badge-success"
+        (click)="submit()"
+        >
+        Actualizar
+      </button>
+    </form>
+  </div>
+
+  <div *ngIf="!formulario">
+    <br />
+    <p>No existe la ciudad...</p>
+  </div>
+</div>

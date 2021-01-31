@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+  
+      <div class="col-sm-12">
+          <h4>Ciudades</h4>
+          <a class="badge badge-info" routerLink="/ciudades/create">
+            Crear nueva ciudad
+          </a>
+      </div>
+  
+      <div class="col-sm-12">
+        <form [formGroup]="formulario">
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Filtro de búsqueda"
+              formControlName="inputSearch"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="search()"
+              >
+                Buscar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+  
+      <div [class]="classTable">
+        <table class="table table-no-bordered table-hover" mdbTable>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr mdbTableCol *ngFor="let ciudad of ciudadesList; let i = index" (click)="selectRow(ciudad, i)" [ngClass]="{'table-primary': i == rowSelected}">
+              <th scope="row">{{ ciudad.id }}</th>
+              <td>{{ ciudad.nombre }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div class="col-md-4" *ngIf="dataRowSelected">
+        <h4>Ciudad seleccionada</h4>
+        <div>
+          <label><strong>nombre:</strong></label> {{ dataRowSelected.nombre }}
+        </div>
+        <a class="badge badge-warning" (click)="updateCiudad(dataRowSelected.id)">
+          Editar
+        </a>
+      </div>
+  
+    </div>
+  </div>
+  
