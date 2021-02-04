@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
                 if(this.responseServiceLogin.status == true)
                 {
                     localStorage.setItem('token', this.responseServiceLogin.data.token);
-                    this.router.navigate(['/tutorials']);
+                    this.router.navigate(['/ciudades']);
                 } else {
                     Swal.fire({
                       icon: 'error',

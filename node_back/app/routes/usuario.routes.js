@@ -5,8 +5,9 @@ module.exports = (app) => {
 
   router.post("/create", userValidation.validate("createUser"), usuarioController.createUser);  
   router.put("/update", userValidation.validate("updateUser"), usuarioController.updateUser);  
-  router.get("/list",  usuarioController.listUser);  
+  router.get("/index",  usuarioController.listUser);  
+  router.get("/:id" ,  usuarioController.findOneUser);
 
-  app.use("/api/usuario", router);
+  app.use("/api/usuarios", router);
   
 };

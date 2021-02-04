@@ -1,1 +1,71 @@
-<p>usuario-index works!</p>
+<div class="container">
+    <div class="row">
+  
+      <div class="col-sm-12">
+          <h4>Usuarios</h4>
+          <a class="badge badge-info" routerLink="/usuarios/create">
+            Crear nuevo usuario
+          </a>
+      </div>
+  
+      <div class="col-sm-12">
+        <form [formGroup]="formulario">
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Filtro de búsqueda"
+              formControlName="inputSearch"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="search()"
+              >
+                Buscar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+  
+      <div [class]="classTable">
+        <table class="table table-no-bordered table-hover" mdbTable>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Sede</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr mdbTableCol *ngFor="let usuario of usuariosList; let i = index" (click)="selectRow(usuario, i)" [ngClass]="{'table-primary': i == rowSelected}">
+              <th scope="row">{{ usuario.id }}</th>
+              <td>{{ usuario.nombre }}</td>
+              <td>{{ usuario.email }}</td>
+              <td>{{ usuario.sede.nombre }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div class="col-md-4" *ngIf="dataRowSelected">
+        <h4>Usuario seleccionado</h4>
+        <div>
+            <label><strong>Nombre:</strong></label> {{ dataRowSelected.nombre }}
+            <br>
+            <label><strong>Correo:</strong></label> {{ dataRowSelected.email }}
+            <br>
+            <label><strong>Sede:</strong></label> {{ dataRowSelected.sede.nombre }}
+        </div>
+        <a class="badge badge-warning" (click)="updateUsuario(dataRowSelected.id)">
+          Editar
+        </a>
+      </div>
+  
+    </div>
+  </div>
+  
