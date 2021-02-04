@@ -15,6 +15,9 @@ import { CiudadCreateComponent } from './page/ciudad-create/ciudad-create.compon
 import { SedeCreateComponent } from './page/sede-create/sede-create.component';
 import { SedeUpdateComponent } from './page/sede-update/sede-update.component';
 import { SedeIndexComponent } from './page/sede-index/sede-index.component';
+import { UsuarioIndexComponent } from './page/usuario-index/usuario-index.component';
+import { UsuarioCreateComponent } from './page/usuario-create/usuario-create.component';
+import { UsuarioUpdateComponent } from './page/usuario-update/usuario-update.component';
 
 
 @NgModule({
@@ -29,7 +32,10 @@ import { SedeIndexComponent } from './page/sede-index/sede-index.component';
     CiudadCreateComponent,
     SedeCreateComponent,
     SedeUpdateComponent,
-    SedeIndexComponent
+    SedeIndexComponent,
+    UsuarioIndexComponent,
+    UsuarioCreateComponent,
+    UsuarioUpdateComponent
   ],
   imports: [
     BrowserModule,

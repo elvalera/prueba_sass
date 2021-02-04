@@ -13,6 +13,9 @@ import { CiudadUpdateComponent } from './page/ciudad-update/ciudad-update.compon
 import { SedeIndexComponent } from './page/sede-index/sede-index.component';
 import { SedeCreateComponent } from './page/sede-create/sede-create.component';
 import { SedeUpdateComponent } from './page/sede-update/sede-update.component';
+import { UsuarioIndexComponent } from './page/usuario-index/usuario-index.component';
+import { UsuarioCreateComponent } from './page/usuario-create/usuario-create.component';
+import { UsuarioUpdateComponent } from './page/usuario-update/usuario-update.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'tutorials', pathMatch: 'full' },
@@ -25,6 +28,10 @@ const routes: Routes = [
   { path: 'sedes', component: SedeIndexComponent, canActivate: [AuthGuard] },
   { path: 'sedes/create', component: SedeCreateComponent, canActivate: [AuthGuard] },
   { path: 'sedes/update/:id', component: SedeUpdateComponent, canActivate: [AuthGuard] },
+
+  { path: 'usuarios', component: UsuarioIndexComponent, canActivate: [AuthGuard] },
+  { path: 'usuarios/create', component: UsuarioCreateComponent, canActivate: [AuthGuard] },
+  { path: 'usuarios/update/:id', component: UsuarioUpdateComponent, canActivate: [AuthGuard] },
 
   { path: 'tutorials', component: TutorialsListComponent, canActivate:[AuthGuard] },
   { path: 'tutorials/:id', component: TutorialDetailsComponent },
