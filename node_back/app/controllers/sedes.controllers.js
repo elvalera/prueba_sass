@@ -83,14 +83,15 @@ module.exports = {
 
         const body = { 
             nombre : req.body.nombre,
-            ciudadId : req.body.idCiudad
+            ciudadId : req.body.ciudadId
         }
 
         sede.create(body) 
             .then((result) => {
                 res.send({status: true, message : "Sede Creada" , data: result})
             }).catch((err) => {
-                res.send({status: false, message : "Un error inesperado por favor intente de nuevo"})
+                errors = err;
+                res.send({status: false, message : errors.errors[0].message, errors: errors});
             });
 
     },
@@ -101,14 +102,15 @@ module.exports = {
 
         const body = { 
             nombre : req.body.nombre,
-            ciudadId : req.body.idCiudad
+            ciudadId : req.body.ciudadId
         }
 
         sede.update(body , {where : { id : req.body.idSede}}) 
             .then((result) => {
                 res.send({status: true, message : "Sede actualizada" , data: result})
             }).catch((err) => {
-                res.send({status: false, message : "Un error inesperado por favor intente de nuevo"})
+                errors = err;
+                res.send({status: false, message : errors.errors[0].message, errors: errors});
             });
 
     },
@@ -131,7 +133,12 @@ module.exports = {
         const nombre = req.query.nombre;
         var condition = nombre && nombre != '' ? { nombre: { [Op.like]: `%${nombre}%` } } : null;
 
-        sede.findAll({ where: condition })
+        sede.findAll({ 
+            where: condition,
+            include : [
+                db.ciudad
+            ]
+        })
         .then((result) => {
             res.send({status: true, message : "Lista de sedes" , data: result})
         }).catch((err) => {

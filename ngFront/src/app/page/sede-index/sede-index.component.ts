@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class SedeIndexComponent implements OnInit {
 
   classTable = 'col-md-12';
-  ciudadesList: any;
+  sedesList: any;
   responseService: any;
   formulario: FormGroup;
   dataRowSelected = null;
@@ -21,14 +21,14 @@ export class SedeIndexComponent implements OnInit {
   constructor(private restService: RestService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
-    this.getAllCiudades();
+    this.getAllSedes();
 
     this.formulario = this.formBuilder.group({
       inputSearch: new FormControl('', Validators.compose([]))
     });
   }
 
-  getAllCiudades(data = null): void {
+  getAllSedes(data = null): void {
     this.restService.get('sede/index', data)
       .then((res) => {
           this.responseService = res;
@@ -36,7 +36,7 @@ export class SedeIndexComponent implements OnInit {
           if(this.responseService.status)
           {
             this.resetView();
-            this.ciudadesList = this.responseService.data;
+            this.sedesList = this.responseService.data;
           } else {
             Swal.fire({
               icon: 'error',
@@ -65,7 +65,7 @@ export class SedeIndexComponent implements OnInit {
     let data = {
       nombre: this.formulario.controls['inputSearch'].value
     }
-    this.getAllCiudades(data);
+    this.getAllSedes(data);
   }
 
   updateSede(id) {

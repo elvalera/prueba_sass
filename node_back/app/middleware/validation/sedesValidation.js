@@ -17,7 +17,7 @@ exports.validate = (method) => {
                         .exists().withMessage("Debe enviar el parametro nombre")
                         .not().isEmpty().withMessage( 'Debe enviar el nombre de la ciudad')
                         .isString().withMessage("Debe ser un string"),
-                check('idCiudad')
+                check('ciudadId')
                         .exists().withMessage("Debe enviar el parametro Identificacion de ciudad")
                         .not().isEmpty().withMessage( 'Debe decir que ciudad desea modificar')
                         .isNumeric().withMessage("Debe el identificador de ciudad debe ser numerico")
@@ -30,7 +30,8 @@ exports.validate = (method) => {
                         .exists().withMessage("Debe enviar el parametro nombre")
                         .not().isEmpty().withMessage( 'Debe enviar el nombre de la sede')
                         .isString().withMessage("Debe ser un string"),
-                check('idCiudad')
+                        // .isUnique().withMessage("El nombre de la sede ya está registrado"),
+                check('ciudadId')
                         .exists().withMessage("Debe enviar el parametro Identificacion de ciudad")
                         .not().isEmpty().withMessage( 'Debe decir que ciudad desea modificar')
                         .isNumeric().withMessage("Debe el identificador de ciudad debe ser numerico")
@@ -43,7 +44,8 @@ exports.validate = (method) => {
                         .exists().withMessage("Debe enviar el parametro nombre")
                         .not().isEmpty().withMessage( 'Debe enviar el nombre de la sede')
                         .isString().withMessage("Debe ser un string"),
-                check('idCiudad')
+                        // .isUnique().withMessage("El nombre de la sede ya está registrado"),
+                check('ciudadId')
                         .exists().withMessage("Debe enviar el parametro Identificacion de ciudad")
                         .not().isEmpty().withMessage( 'Debe decir que ciudad desea modificar')
                         .isNumeric().withMessage("Debe el identificador de ciudad debe ser numerico"),

@@ -3,7 +3,9 @@ const ciudadModel = db.ciudad;
 
 
 module.exports = () => {
-    return ciudadModel.bulkCreate([{
-        nombre : "bogota",
-    }])
+    return ciudadModel.bulkCreate([
+    	{ nombre : "Bogotá"},
+    	{ nombre : "Cali"},
+    	{ nombre : "Medellín"}
+    ])
 }

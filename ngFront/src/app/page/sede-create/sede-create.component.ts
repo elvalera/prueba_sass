@@ -13,6 +13,8 @@ export class SedeCreateComponent implements OnInit {
 
   id: string;
   formulario: FormGroup;
+  responseServiceCiudades: any;
+  ciudadesList: any;
   responseService: any;
 
   constructor(
@@ -25,11 +27,43 @@ export class SedeCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAllCiudades();
+
     this.formulario = this.formBuilder.group({
       nombre: new FormControl('', Validators.compose([
           Validators.required
       ])),
+      ciudadId: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
     });
+  }
+
+  getAllCiudades(): void {
+    this.restService.get('ciudad/index')
+      .then((res) => {
+          this.responseServiceCiudades = res;
+
+          if(this.responseServiceCiudades.status)
+          {
+            console.log(this.responseServiceCiudades);
+            this.ciudadesList = this.responseServiceCiudades.data;
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error en validación',
+              text: this.responseServiceCiudades.message,
+            })
+          }
+      }, (err) => {
+          console.log(err);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error en validación',
+            text: 'Ocurrio un error en la conexión al servidor',
+          })
+      }
+    );
   }
 
   submit() {

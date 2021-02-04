@@ -36,13 +36,15 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Nombre</th>
+              <th scope="col">Ciudad</th>
             </tr>
           </thead>
           <tbody>
             
-            <tr mdbTableCol *ngFor="let ciudad of ciudadesList; let i = index" (click)="selectRow(ciudad, i)" [ngClass]="{'table-primary': i == rowSelected}">
-              <th scope="row">{{ ciudad.id }}</th>
-              <td>{{ ciudad.nombre }}</td>
+            <tr mdbTableCol *ngFor="let sede of sedesList; let i = index" (click)="selectRow(sede, i)" [ngClass]="{'table-primary': i == rowSelected}">
+              <th scope="row">{{ sede.id }}</th>
+              <td>{{ sede.nombre }}</td>
+              <td>{{ sede.ciudad.nombre }}</td>
             </tr>
           </tbody>
         </table>
@@ -51,7 +53,9 @@
       <div class="col-md-4" *ngIf="dataRowSelected">
         <h4>Sede seleccionada</h4>
         <div>
-          <label><strong>nombre:</strong></label> {{ dataRowSelected.nombre }}
+          <label><strong>Nombre:</strong></label> {{ dataRowSelected.nombre }}
+          <br>
+          <label><strong>Ciudad:</strong></label> {{ dataRowSelected.ciudad.nombre }}
         </div>
         <a class="badge badge-warning" (click)="updateSede(dataRowSelected.id)">
           Editar

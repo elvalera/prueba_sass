@@ -13,7 +13,16 @@
         />
       </div>
 
-      <button type="submit" class="badge badge-success" (click)="submit()">
+      <div class="form-group">
+        <label for="title">Ciudad</label>
+        <select class="form-control" formControlName="ciudadId">
+          <option *ngFor="let ciudad of ciudadesList" [ngValue]="ciudad.id">
+            {{ ciudad.nombre }}
+          </option>
+        </select>
+      </div>
+
+      <button type="submit" class="badge badge-success">
         Crear
       </button>
     </form>
