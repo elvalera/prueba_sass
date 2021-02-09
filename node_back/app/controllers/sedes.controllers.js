@@ -28,11 +28,12 @@ module.exports = {
         const body = { 
             nombre : req.body.nombre
         }
-        ciudad.update(body , {where : { id : req.body.idCiudad}})
+        ciudad.update(body , {where : { id : req.body.ciudadId}})
             .then((result) => {
                 res.send({status: true, message : "Ciudad actualizada" , data: result})
             }).catch((err) => {
-                res.send({status: false, message : "Un error inesperado por favor intente de nuevo"})
+                let errors = err;
+                res.send({status: false, message : errors.errors[0].message, errors: errors});
             });
     },
 

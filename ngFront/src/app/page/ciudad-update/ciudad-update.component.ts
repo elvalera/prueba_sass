@@ -29,7 +29,7 @@ export class CiudadUpdateComponent implements OnInit {
     this.getModel();
 
     this.formulario = this.formBuilder.group({
-      idCiudad: new FormControl(this.id, Validators.compose([
+      ciudadId: new FormControl(this.id, Validators.compose([
           Validators.required
       ])),
       nombre: new FormControl('', Validators.compose([
