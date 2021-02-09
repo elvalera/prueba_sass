@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
             .then((res) => {
                 this.responseServiceLogin = res;
 
-                if(this.responseServiceLogin.status == true)
+                if(this.responseServiceLogin.status)
                 {
                     localStorage.setItem('token', this.responseServiceLogin.data.token);
                     this.router.navigate(['/ciudades']);

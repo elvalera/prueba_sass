@@ -16,12 +16,12 @@
     <div class="navbar-nav ml-auto">
       <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="login">Iniciar session</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="login">Iniciar sesión</a>
         </li>
       </ng-container>
       <ng-template #loggedIn>
         <li class="nav-item">
-          <a class="nav-link" routerLink="#" (click)="authService.logout()">Cerrar Session</a>
+          <a class="nav-link" routerLink="#" (click)="authService.logout()">Cerrar Sesión</a>
         </li>
       </ng-template>
     </div>

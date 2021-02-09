@@ -14,12 +14,18 @@ export class RestService {
     httpOptions = {}
 
     constructor(private http: HttpClient) {
-        this.httpOptions = {
-            headers: new HttpHeaders({
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-                'token': localStorage.getItem('token')
-            })
-        }
+        this.setHeader();
+    }
+
+    setHeader(){
+        return new Promise(resolve => {
+            this.httpOptions = {
+                headers: new HttpHeaders({
+                    'token': localStorage.getItem('token')
+                })
+            }
+            resolve(true);
+        });
     }
 
     /*** Promesas ***/
@@ -38,42 +44,50 @@ export class RestService {
         }
 
         return new Promise(resolve => {
-            this.http.get(environment.apiUrl + action, this.httpOptions).subscribe(res => {
-                resolve(res);
-            }, err => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error en validación',
-                    text: 'Ocurrio un error en la conexión al servidor',
-                })
-            });
+
+            this.setHeader().then((res) => {
+                this.http.get(environment.apiUrl + action, this.httpOptions).subscribe(res => {
+                    resolve(res);
+                }, err => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error en validación',
+                        text: 'Ocurrio un error en la conexión al servidor',
+                    })
+                });
+            })
+
         });
     }
 
     post(action, data) {
         return new Promise(resolve => {
-            this.http.post(environment.apiUrl + action, data, this.httpOptions).subscribe(res => {
-                resolve(res);
-            }, err => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error en validación',
-                    text: 'Ocurrio un error en la conexión al servidor',
-                })
+            this.setHeader().then((res) => {
+                this.http.post(environment.apiUrl + action, data, this.httpOptions).subscribe(res => {
+                    resolve(res);
+                }, err => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error en validación',
+                        text: 'Ocurrio un error en la conexión al servidor',
+                    })
+                });
             });
         });
     }
 
     put(action, data) {
         return new Promise(resolve => {
-            this.http.put(environment.apiUrl + action, data, this.httpOptions).subscribe(res => {
-                resolve(res);
-            }, err => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error en validación',
-                    text: 'Ocurrio un error en la conexión al servidor',
-                })
+            this.setHeader().then((res) => {
+                this.http.put(environment.apiUrl + action, data, this.httpOptions).subscribe(res => {
+                    resolve(res);
+                }, err => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error en validación',
+                        text: 'Ocurrio un error en la conexión al servidor',
+                    })
+                });
             });
         });
     }
